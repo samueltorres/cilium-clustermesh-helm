@@ -1,0 +1,47 @@
+debug:
+  enabled: true
+nodeinit:
+  enabled: true
+  restartPods: true
+kubeProxyReplacement: partial
+hostServices:
+  enabled: false
+externalIPs:
+  enabled: true
+nodePort:
+  enabled: true
+hostPort:
+  enabled: true
+ipam:
+  mode: kubernetes
+bpf:
+  masquerade: false
+hubble:
+  enabled: true
+  ui:
+    enabled: true
+  relay:
+    enabled: true
+cluster:
+  id: 1
+  name: kind-1
+clustermesh:
+  useAPIServer: true
+  config:
+    enabled: true
+    clusters:
+    - name: kind-1
+      port: 2379
+      ips:
+      - 172.18.255.201
+    - name: kind-2
+      port: 2379
+      ips:
+      - 172.18.255.211
+  apiserver:
+    tls:
+      auto:
+        enabled: false
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 172.18.255.201
